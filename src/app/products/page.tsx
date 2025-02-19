@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 const ProductPage = () => {
     return ( 
         <div>
-            <h1 className="text-red-500">Products Page</h1>
+            <h1 className="text-red-500">hello</h1>
             <Button>Fsw 7.0</Button>
             <Input/>
         </div>
