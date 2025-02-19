@@ -32,7 +32,7 @@ model Restaurant {
 model MenuCategory {
   id           String     @id @default(uuid())
   name         String
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id]) /*OBS-1*/
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade) /*OBS-1*/
   restaurantId String
   products     Product[] /*¢*/
   createdAt    DateTime   @default(now())
@@ -52,9 +52,9 @@ model Product {
   imageUrl       String
   ingredients    String[]
   orderProducts  OrderProduct[] /*% nao sei*/
-  restaurant     Restaurant     @relation(fields: [restaurantId], references: [id]) /*£*/
+  restaurant     Restaurant     @relation(fields: [restaurantId], references: [id], onDelete: Cascade) /*£*/
   restaurantId   String
-  menuCategory   MenuCategory   @relation(fields: [menuCategoryId], references: [id]) /*¢*/
+  menuCategory   MenuCategory   @relation(fields: [menuCategoryId], references: [id], onDelete: Cascade) /*¢*/
   menuCategoryId String
   createdAt      DateTime       @default(now())
   updateAt       DateTime       @updatedAt
@@ -65,7 +65,7 @@ model Order {
   total             Float
   status            OrderStatus //busca no enum
   consumptionMethod ConsumptionMethod //busca no enum
-  restaurant        Restaurant        @relation(fields: [restaurantId], references: [id]) /*¬*/
+  restaurant        Restaurant        @relation(fields: [restaurantId], references: [id], onDelete: Cascade) /*¬*/
   restaurantId      String
   orderProducts     OrderProduct[] /*$ nao sei*/
   createdAt         DateTime          @default(now())
@@ -74,9 +74,9 @@ model Order {
 
 model OrderProduct {
   id        String   @id @default(uuid())
-  product   Product  @relation(fields: [productId], references: [id]) /*%*/
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade) /*%*/
   productId String
-  order     Order    @relation(fields: [orderId], references: [id]) /*$*/
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade) /*$*/
   orderId   Int
   quantity  Int
   price     Float
